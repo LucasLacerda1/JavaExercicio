@@ -2,29 +2,19 @@ import java.util.Scanner;
 
 public class Informacoes {
     
-    public static String[] perguntarNome(){
+    public static void perguntarNomeEIdade(int[] idade, String[] nome){
         
         Scanner scanner = new Scanner(System.in);
-        String[] nome = new String[5];
         
         for (int i = 0; i < 5; i++){
             System.out.print("Informe o seu nome: ");
             nome[i] = scanner.nextLine();
-            }
-        
-        return nome;
-        }
-    
-    public static int[] perguntarIdade(){
-        int[] idade = new int[5];
-        Scanner scanner = new Scanner(System.in);
-        
-        for (int i = 0; i < 5; i++){
-            System.out.print("Informe sua idade:");
+            
+            System.out.print("Informe sua idade: ");
             idade[i]  = scanner.nextInt();
+            scanner.nextLine();
+            }
         }
-        return idade;
-    }
     
     public static float calcularMedia(int[] idade){
         int soma = 0;
@@ -64,10 +54,10 @@ public class Informacoes {
     
     public static int maiorIdade(int[] idade){
         
-        int maiorIdade = idade[0];
+        int maiorIdade = 0;
         
-        for(int i = 1; i < idade.length; i++){
-            if(idade[i] > 17){
+        for(int i = 0; i < idade.length; i++){
+            if(idade[i] >= 18){
                 maiorIdade ++;
             }
         }
@@ -76,42 +66,44 @@ public class Informacoes {
     }
 }
 
+
 package com.mycompany.kihkugosthoso;
 
 public class Pessoa {
 
     public static void main(String[] args){
         
-        String[] nomes = Informacoes.perguntarNome();
+        int[] idades = new int[5];
+        int indice = 0;
+        String[] nomes = new String[5];
         
-        int[] idades = Informacoes.perguntarIdade();
-        
+        Informacoes.perguntarNomeEIdade(idades, nomes);
         float mediaIdade = Informacoes.calcularMedia(idades);
-        
         int idadeMaior = Informacoes.idadeMaior(idades);
-        
         int idadeMenor = Informacoes.idadeMenor(idades);
-        
         int maiorIdade = Informacoes.maiorIdade(idades);
         
-        int indice = 0;
-        
-        for(String nome : nomes){
-            System.out.println(nome);
-        }
-        
-        for(int idade : idades){
-            System.out.println(idade);}
-        
-        for(int i = 0; i <idades.length; i++){
-            if(idades[i] == maiorIdade){
+        for(int i = 0; i < idades.length; i++){
+            if(idades[i] == idadeMaior){
                 indice = i;
                 break;
             }
         }
         
+        System.out.println("**** Lista de nome ****");
+        for(String nome : nomes){
+            System.out.println(nome);
+        }
+        
+        System.out.println("**** Lista de Idades ****");
+        for(int idade : idades){
+            System.out.println(idade);}
+        
+        System.out.println("Idade média: " + mediaIdade);
+        System.out.println("Menor Idade: " + idadeMenor);
+        System.out.println("Quantidades de maiores de idadde: " + maiorIdade);
         System.out.println("A pessoa com a maior idade é: " 
-                + nomes[indice] + ", com" 
-                + maiorIdade + "anos.");
+                + nomes[indice] + ", com " 
+                + idadeMaior + " anos.");
         }
     }
