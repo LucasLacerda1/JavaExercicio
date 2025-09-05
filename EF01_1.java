@@ -10,25 +10,25 @@ public class Bahrratha {
         
         Random random = new Random();
         
-        populacao = random.nextInt(200);
+        this.populacao = random.nextInt(200);
     }
     
     public int aumentaBarata() {
         
-        float crescer = (float) (populacao * 0.10);
+        float crescer = (float) (this.populacao * 0.10);
         
-        populacao += (int) crescer;
+        this.populacao += (int) crescer;
         
-        return populacao;
+        return this.populacao;
     }
     
     public int spray() {
         
-        float pulverizar = (float) (populacao * 0.10);
+        float pulverizar = (float) (this.populacao * 0.10);
         
-       populacao -= (int) pulverizar;
+       this.populacao -= (int) pulverizar;
        
-       return populacao;
+       return this.populacao;
     }
     
     public int getNumeroBarata() {
