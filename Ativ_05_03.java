@@ -33,43 +33,8 @@ import java.util.Scanner;
 
 public class BichinBichin {
     ArrayList<Produto> produtos = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
-    public void menu() {
-        while(true) {
-            System.out.println("1. Adicione um produto.");
-            System.out.println("2. Exibir produtos.");
-            System.out.println("3. Sair");
-            System.out.print("Digite uma opção: ");
-            int opcao = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (opcao) {
-                case 1:
-                    menuProdutos();
-                    break;
-                case 2:
-                    exibirProdutos();
-                    break;
-                case 3:
-                    System.out.println("Saindo.");
-                    return;
-                default:
-                    System.out.println("opção inválida!");
-            }
-        }
-    }
-    
-    public void menuProdutos() {
-        System.out.println("Digite o nome do produto: ");
-        String nome = scanner.nextLine();
         
-        System.out.println("Digite o preço do produto: ");
-        double preco = scanner.nextDouble();
-        
-        System.out.println("Digite a quantidade do produto: ");
-        int quantidade = scanner.nextInt();
-        scanner.nextLine();
-        
+    public void menuProdutos(String nome, double preco, int quantidade) {
         Produto produto = new Produto(preco, quantidade, nome);
         produtos.add(produto);
     }
@@ -91,9 +56,48 @@ public class BichinBichin {
     }
 }
 
+import java.util.Scanner;
+
 public class main {
     public static void main(String[] args) {
         BichinBichin app = new BichinBichin();
-        app.menu();
+        Scanner scanner = new Scanner(System.in);
+        
+        String nome;
+        double preco;
+        int quantidade;
+        
+        while(true) {
+            System.out.println("1. Adicione um produto.");
+            System.out.println("2. Exibir produtos.");
+            System.out.println("3. Sair");
+            System.out.print("Digite uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("Digite o nome do produto: ");
+                    nome = scanner.nextLine();
+                    
+                    System.out.println("Digite o preço do produto: ");
+                    preco = scanner.nextDouble();
+                    
+                    System.out.println("Digite a quantidade do produto: ");
+                    quantidade = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    app.menuProdutos(nome, preco, quantidade);
+                    break;
+                case 2:
+                    app.exibirProdutos();
+                    break;
+                case 3:
+                    System.out.println("Saindo.");
+                    return;
+                default:
+                    System.out.println("opção inválida!");
+            }
+        }
     }
 }
